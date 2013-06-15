@@ -14,16 +14,33 @@
 <body>
   <div class="container">
     <div class="row">
-      <div  ng-controller="ViewCtrl" class="span12">
-        <ul class="unstyled pokemon">
-            <li ng-repeat="pokemon in pokemons">
-              <label class="pokeball" for="pid-{{pokemon.id}}" class="done-{{todo.done}}" title="{{pokemon.name}}">
-                <input id="pid-{{pokemon.id}}" type="radio" name="pokemon" value="{{pokemon.id}}" />
-                <span>{{pokemon.name}}</span>
-                <div class="pokemon-sprite" style="background-position-x: {{pokemon.position}}px"></div>
-              </label>
-            </li>
-          </ul>
+      <div class="span4"></div>
+      <div  ng-controller="ViewCtrl" class="span5 text-center">
+          <form ng-submit="choosePokemon()">
+            <ul class="unstyled pokemon">
+              <li ng-repeat="pokemon in pokemons">
+                <label class="pokeball" for="pid-{{pokemon.id}}" title="{{pokemon.name}}">
+                  <input id="pid-{{pokemon.id}}" ng-click="choose(this)" type="radio" name="pokemon" value="{{pokemon.id}}" />
+                  <span>{{pokemon.name}}</span>
+                  <div class="pokemon-sprite" style="background-image: url(img/{{pokemon.id}}.gif)"></div>
+                </label>
+              </li>
+            </ul>
+
+            <div class="profile" ng-hide="chosen == null">
+              <p><strong>{{chosen.name}} selected.</strong></p>
+              <ul class="unstyled">
+                  <li ng-repeat="stat in chosen.attributes"><strong>{{stat[0].name}}</strong>: {{stat[0].value}}</li>
+              </ul>
+            </div>
+
+            <input class="gb-button" type="submit" value="Choose">
+          </form>
+
+          <p ng-hide="rivalPokemon == null"> 
+            {{rivalMessage}}<br />
+            <div class="pokemon-sprite" style="background-image: url(img/{{rivalPokemon.id}}.gif)"></div>
+          </p>
       </div>
     </div>
   </div>

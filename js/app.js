@@ -1,38 +1,51 @@
 
 var app = angular.module('app', []);
 
+var Bulbasaur = new pokemon('Bulbasaur', '001', 49, 45, 49, 65, 65, 45);
+var Charmander = new pokemon('Charmander', '004', 39, 52, 43, 60, 50, 65);
+var Squirtle = new pokemon('Squirtle', '007', 29, 30, 80, 23, 21, 29);
+
 function ViewCtrl($scope) {
-  $scope.pokemons = [
-    {name:'Charmander', id:'2', position:'-257'},
-    {name:'Bulbasaur', id:'1', position:'-15'},
-    {name:'Squirtle', id:'3', position:'-493'}];
+  $scope.chosen = null;
+  $scope.pokemons = [Bulbasaur, Charmander, Squirtle];
+  $scope.rivalMessage = "";
+  $scope.rivalPokemon = null;
+
+    $scope.choosePokemon = function() {
+      var message = "Your rival chooses ";
+
+      if ($scope.chosen.id == '001')
+      {
+        $scope.rivalPokemon = Charmander;
+        $scope.rivalMessage = message + $scope.rivalPokemon.name + '!';
+      }
+      else if ($scope.chosen.id == '004')
+      {
+        $scope.rivalPokemon = Squirtle;
+        $scope.rivalMessage = message + $scope.rivalPokemon.name + '!';
+      }
+      else
+      {
+        $scope.rivalPokemon = Bulbasaur;
+        $scope.rivalMessage = message + $scope.rivalPokemon.name + '!';
+      }
+    };
+
+    $scope.choose = function(elem) {
+      $scope.chosen = elem.pokemon;
+    }
 }
 
-/* function MainCtrl($scope, $http, orderByFilter) {
-  var url = "http://50.116.42.77:3001";
-  $scope.selectedModules = [];
-  //iFrame for downloading
-  var $iframe = $("<iframe>").css('display','none').appendTo(document.body);
+function pokemon(name,id,hp,atk,def,spatk,spdef,spd)
+{
+  this.name = name;
+  this.id = id;
+  this.hp = [{name: 'Hit Points', value: hp}];
+  this.atk = [{name: 'Attack', value: atk}];
+  this.def = [{name: 'Defense', value: def}];
+  this.spatk = [{name: 'Special Attack', value: spatk}];
+  this.spdef = [{name: 'Special Defense', value: spdef}];
+  this.spd = [{name: 'Speed', value: spd}];
 
-  $scope.showBuildModal = function() {
-    $scope.buildModalShown = true;
-    //Load modules if they aren't loaded yet
-    if (!$scope.modules) {
-      $http.get(url + "/api/bootstrap").then(function(response) {
-        $scope.modules = response.data.modules;
-      }, function() {
-        $scope.buildGetErrorText = "Error retrieving build files from server.";
-      });
-    }
-  };
-
-  $scope.downloadBuild = function() {
-    var downloadUrl = url + "/api/bootstrap/download?";
-    angular.forEach($scope.selectedModules, function(module) {
-      downloadUrl += "modules=" + module + "&";
-    });
-    $iframe.attr('src','');
-    $iframe.attr('src', downloadUrl);
-    $scope.buildModalShown = false;
-  };
-} */
+  this.attributes = [this.hp, this.atk, this.def, this.spatk, this.spdef, this.spd];
+}
