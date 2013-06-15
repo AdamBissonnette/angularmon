@@ -3,9 +3,9 @@ var app = angular.module('app', []);
 
 function ViewCtrl($scope) {
   $scope.pokemons = [
-    {name:'Charmander', id:'1'},
-    {name:'Bulbasaur', id:'2'},
-    {name:'Squirtle', id:'3'}];
+    {name:'Charmander', id:'2', position:'-257'},
+    {name:'Bulbasaur', id:'1', position:'-15'},
+    {name:'Squirtle', id:'3', position:'-493'}];
 }
 
 /* function MainCtrl($scope, $http, orderByFilter) {

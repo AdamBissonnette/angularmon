@@ -1,0 +1,9 @@
+.pokemon {margin: 150px auto 0; text-align: center;}
+.pokemon li {display: inline-block;}
+
+.pokeball {background: #fff url(../img/ball-small.png) no-repeat top center; background-size: 55px 55px; text-align: center; display: block; padding: 65px 15px 0; transition: all .2s;}
+.pokeball:hover {-webkit-transform: scale(1.2);}
+.pokeball input {display: none;}
+.pokeball span {font-weight: bold;}
+
+.pokemon-sprite {height: 80px; width: 90px; background-image: url('../img/sprites.png');}
