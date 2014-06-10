@@ -10,6 +10,7 @@ function ViewCtrl($scope) {
   $scope.pokemons = [Bulbasaur, Charmander, Squirtle];
   $scope.rivalMessage = "";
   $scope.rivalPokemon = null;
+  $scope.battleStarted = false;
 
     $scope.choosePokemon = function() {
       var message = "Your rival chooses ";
@@ -34,12 +35,34 @@ function ViewCtrl($scope) {
     $scope.choose = function(elem) {
       $scope.chosen = elem.pokemon;
     }
+
+    $scope.doBattle = function() {
+      $scope.battleStarted = true;
+    }
+
+    $scope.attackRival = function(elem) {
+      console.log("attacking: " + elem.id);
+      $scope.rivalPokemon.curHP -= 5;
+
+
+      switch(elem.id) {
+        case 1:
+            
+            alert($scope.rivalPokemon.curHP);
+          break;
+        case 2:
+          break;
+        default:
+          break;
+      }
+    }
 }
 
 function pokemon(name,id,hp,atk,def,spatk,spdef,spd)
 {
   this.name = name;
   this.id = id;
+  this.curHP = hp;
   this.hp = [{name: 'Hit Points', value: hp}];
   this.atk = [{name: 'Attack', value: atk}];
   this.def = [{name: 'Defense', value: def}];

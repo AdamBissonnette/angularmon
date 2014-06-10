@@ -1,4 +1,18 @@
-.pokemon {margin: 150px auto 0; text-align: center;}
+/* Clearfix */
+.clearfix:before,
+.clearfix:after {
+  content:"";
+  display:table;
+}
+.clearfix:after {
+  clear:both;
+}
+.clearfix {
+  zoom:1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+
+.pokemon {margin: 50px auto 0; text-align: center;}
 .pokemon li {display: inline-block;}
 
 .pokeball {background: #fff url(../img/ball-small.png) no-repeat top center; background-size: 55px 55px; text-align: center; display: block; padding: 65px 15px 0; transition: all .2s;}
@@ -42,3 +56,7 @@
 	position:relative;
 	top:1px;
 }
+
+.annoying-header {margin: 20px auto; text-align: center;}
+.actions {width: 15%;}
+.actions li {float: left; margin: 0 15px 0 0;}
